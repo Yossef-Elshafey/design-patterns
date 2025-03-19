@@ -45,12 +45,7 @@ class Subject(ABC):
 class WeatherStation(Subject):
     """
     Each time WeatherStation gets a new measurements,
-    all the observers want to know that information.
-
-    So it implements the Subject interface (ABC class).
-
-    measurements_changed -> function gets called to update the values,
-                            fire a notify_observers action
+    all the observers want to know that information
     """
 
     observers: list[Observer]
@@ -82,13 +77,6 @@ class WeatherStation(Subject):
 
 
 class CurrentConditionsDisplay(Observer):
-    """
-    Implements Observer interface.
-    Display the current conditions for each change(update) immeditaly.
-
-    displayCurrent -> handling the data as it should be handled depends on the logic
-    """
-
     temp: int
     humidity: int
 
@@ -107,12 +95,6 @@ class CurrentConditionsDisplay(Observer):
 
 
 class Forecasting(Observer):
-    """
-    Implements Observer interface.
-    Display the current conditions for each change(update) immeditaly.
-
-    displayCurrent -> handling the data as it should be handled depends on the logic
-    """
 
     temp_history: dict[str, int]
     humidity_history: dict[str, int]
@@ -123,35 +105,24 @@ class Forecasting(Observer):
         self.humidity_history = {}
 
     def update(self, temp, humidity):
+
         result = time.gmtime()
-        string_time = time.strftime("%Y:%m:%d:%H:%M:%S", result)
+        string_time = time.strftime("%M:%S", result)
         self.temp_history[string_time] = temp
         self.humidity_history[string_time] = humidity
 
-    def display_previous_weather_data(self):
-        print("Temp History")
+    def display_forecasting_data(self):
         print(self.temp_history)
-        print("-" * 20)
-        print("Humidity History")
         print(self.humidity_history)
 
 
-# Subject
 ws = WeatherStation()
-
-# Each observer needs the Subject in the object construction
 ccd = CurrentConditionsDisplay(ws)
 forecast = Forecasting(ws)
-
-# Sending random numbers every second to the Subject
-# Watching other observers gets notified
-for i in range(5):
+for i in range(20):
     temp = random.randint(0, 10)
     humidity = random.randint(100, 200)
     ws.measurements_changed(temp, humidity)
     ccd.displayCurrent()
+    forecast.display_forecasting_data()
     time.sleep(1)
-
-
-# see all the previous measurement data
-forecast.display_previous_weather_data()
