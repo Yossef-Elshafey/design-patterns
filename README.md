@@ -8,6 +8,7 @@ This repository is inspired by the **Head First Design Patterns** book but imple
 
 - Python implementations of design patterns
 - Examples inspired by the book
+- Functional design of each pattern
 
 ## Getting Started
 
