@@ -25,5 +25,5 @@ cd design-patterns
 ```
 
 ```sh
-python [target_pattern].py
+python [target_pattern_dir]/[target_pattern].py
 ```
