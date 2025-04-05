@@ -90,5 +90,4 @@ pizza_store = SimplePizzaStore()
 cheese_pizza = pizza_store.orderPizza("CheesePizza")
 chicken_Pizza = pizza_store.orderPizza("ChickenPizza")
 chicken_Pizza = pizza_store.orderPizza("ChickenPizza")
-
 invalid_pizza = pizza_store.orderPizza("PepperoniPizza")
