@@ -93,6 +93,6 @@ if __name__ == "__main__":
     remote_control.off_button_pushed(0)
     remote_control.undo_button_pushed()
 
-    remote_control.on_button_pushed(1)
     remote_control.off_button_pushed(1)
+    remote_control.on_button_pushed(1)
     remote_control.undo_button_pushed()
